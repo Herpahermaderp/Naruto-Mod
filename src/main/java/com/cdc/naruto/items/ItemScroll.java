@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemScroll extends Item{
+public class ItemScroll extends Item {
     public ItemScroll(){
         setUnlocalizedName("scroll");
         setRegistryName("scroll");
@@ -32,13 +32,11 @@ public class ItemScroll extends Item{
 
     @Override
     public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab) {
-        tab.add(0, new ItemStack(this));
-
-        for(JutsuEntry entry : NarutoJutsus.JUTSUS.values()){
-            ItemStack scrollWithJutsu = JutsuHelper.setJutsus(new ItemStack(this), new Jutsu(entry, entry.getChakraCost()));
-            for(int i = 0; i < NarutoJutsus.JUTSUS.size();i++){
-                tab.add(i, scrollWithJutsu);
-            }
+    	if(this.func_194125_a(itemIn)) {
+    		for(JutsuEntry entry : NarutoJutsus.JUTSUS.values()) {
+    			ItemStack scrollWithJutsu = JutsuHelper.setJutsus(new ItemStack(this), new Jutsu(entry, entry.getChakraCost()));
+    			tab.add(scrollWithJutsu);
+    		}
         }
     }
 

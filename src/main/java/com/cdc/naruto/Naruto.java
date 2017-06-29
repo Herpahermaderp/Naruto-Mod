@@ -1,9 +1,11 @@
 package com.cdc.naruto;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.cdc.naruto.init.NarutoItems;
-import com.cdc.naruto.init.NarutoJutsus;
 import com.cdc.naruto.proxy.CommonProxy;
-import com.cdc.naruto.util.RegistryUtil;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -12,8 +14,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name=Ref.NAME, acceptedMinecraftVersions=Ref.ACCEPTED_VERSIONS)
 public class Naruto {
