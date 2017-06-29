@@ -32,12 +32,12 @@ public class ItemScroll extends Item{
 
     @Override
     public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab) {
-        tab.set(0, new ItemStack(this));
+        tab.add(0, new ItemStack(this));
 
         for(JutsuEntry entry : NarutoJutsus.JUTSUS.values()){
             ItemStack scrollWithJutsu = JutsuHelper.setJutsus(new ItemStack(this), new Jutsu(entry, entry.getChakraCost()));
             for(int i = 0; i < NarutoJutsus.JUTSUS.size();i++){
-                tab.set(i, scrollWithJutsu);
+                tab.add(i, scrollWithJutsu);
             }
         }
     }

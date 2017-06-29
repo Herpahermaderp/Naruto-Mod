@@ -55,7 +55,7 @@ public class EventHandler {
         if(chakra != null){
             player.sendStatusMessage(new TextComponentString("Chakra: " + chakra.getChakra()), true);
             if(player.world.getTotalWorldTime() % 60 == 0){
-                chakra.fillChakra(1);
+                chakra.replenishChakra();
             }
         }
     }
@@ -126,5 +126,15 @@ public class EventHandler {
                 }
             }
         }
+    }
+    
+    @SubscribeEvent
+    public static void onClonePlayer(net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
+    	if(event.isWasDeath()) {
+    		EntityPlayer player = event.getEntityPlayer();
+    		ICapChakra chakra = player.getCapability(NarutoCapabilities.CHAKRA, null);
+    		ICapChakra oldChakra = event.getOriginal().getCapability(NarutoCapabilities.CHAKRA, null);
+    		chakra.setChakra(oldChakra.getChakra());
+    	}
     }
 }

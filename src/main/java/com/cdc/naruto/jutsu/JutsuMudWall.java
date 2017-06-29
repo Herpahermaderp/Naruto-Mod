@@ -33,16 +33,19 @@ public class JutsuMudWall extends JutsuEntry{
             for(int i = 0; i < 10; i++){
                 for(int j = 0; j < 10; j++){
                     for(int k = 0; k < 3; k++){
-                        if(player.getHorizontalFacing() == EnumFacing.NORTH){
+                        if(player.getHorizontalFacing() == EnumFacing.NORTH) {
                             world.setBlockState(new BlockPos(pos.getX() + (i/2), pos.getY() + j, pos.getZ() + (k/2)), Blocks.DIRT.getDefaultState());
                             world.setBlockState(new BlockPos(pos.getX() - (i/2), pos.getY() + j, pos.getZ() - (k/2)+1), Blocks.DIRT.getDefaultState());
-                        }else if(player.getHorizontalFacing() == EnumFacing.SOUTH){
+                        }
+                        else if(player.getHorizontalFacing() == EnumFacing.SOUTH) {
                             world.setBlockState(new BlockPos(pos.getX() + (i/2), pos.getY() + j, pos.getZ() + (k/2)), Blocks.DIRT.getDefaultState());
                             world.setBlockState(new BlockPos(pos.getX() - (i/2), pos.getY() + j, pos.getZ() - (k/2)+1), Blocks.DIRT.getDefaultState());
-                        }else if(player.getHorizontalFacing() == EnumFacing.EAST){
+                        }
+                        else if(player.getHorizontalFacing() == EnumFacing.EAST) {
                             world.setBlockState(new BlockPos(pos.getX() + (k/2), pos.getY() + j, pos.getZ() + (i/2)), Blocks.DIRT.getDefaultState());
                             world.setBlockState(new BlockPos(pos.getX() - (k/2)+1, pos.getY() + j, pos.getZ() - (i/2)), Blocks.DIRT.getDefaultState());
-                        }else if(player.getHorizontalFacing() == EnumFacing.WEST){
+                        }
+                        else if(player.getHorizontalFacing() == EnumFacing.WEST) {
                             world.setBlockState(new BlockPos(pos.getX() + (k/2), pos.getY() + j, pos.getZ() + (i/2)), Blocks.DIRT.getDefaultState());
                             world.setBlockState(new BlockPos(pos.getX() - (k/2)+1, pos.getY() + j, pos.getZ() - (i/2)), Blocks.DIRT.getDefaultState());
                         }
@@ -50,8 +53,10 @@ public class JutsuMudWall extends JutsuEntry{
                     }
                 }
             }
-        }else{
-            player.sendStatusMessage(new TextComponentString("Earth Style: Mud Wall Jutsu could not be performed on non-ground."), true);
+        }
+        
+        else {
+            player.sendStatusMessage(new TextComponentString("Earth Style: Mud Wall Jutsu could not be performed."), true);
             return super.activeUse(stack, world, player, hand);
         }
         return super.activeUse(stack, world, player, hand);

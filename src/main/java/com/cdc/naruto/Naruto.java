@@ -16,8 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name=Ref.NAME, acceptedMinecraftVersions=Ref.ACCEPTED_VERSIONS)
-public class Naruto
-{
+public class Naruto {
     @SidedProxy(clientSide = Ref.CLIENT_RROXY, serverSide = Ref.COMMON_RROXY)
     public static CommonProxy proxy;
 
@@ -26,8 +25,7 @@ public class Naruto
     @Mod.Instance
     public static Naruto INSTANCE;
 
-    public static final CreativeTabs tabNaruto = new CreativeTabs("tabNaruto"){
-
+    public static final CreativeTabs tabNaruto = new CreativeTabs("tabNaruto") {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(NarutoItems.scroll);
@@ -47,7 +45,7 @@ public class Naruto
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event){
+    public void postInit(FMLPostInitializationEvent event) {
         LOGGER.info("Starting Post-Initialization...");
         proxy.postInit(event);
     }

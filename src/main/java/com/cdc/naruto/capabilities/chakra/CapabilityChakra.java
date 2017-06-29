@@ -15,26 +15,26 @@ public class CapabilityChakra implements ICapChakra {
 
 	private static final ResourceLocation chakraRL = new ResourceLocation(Ref.MODID, "chakra");
 	
-	private float maxChakra = 100.0F;
-	private float currentChakra = maxChakra;
+	private int maxChakra = 100;
+	private int currentChakra = maxChakra;
 	
 	@Override
-	public void diminishChakra(float amount) {
+	public void diminishChakra(int amount) {
 		this.currentChakra -= amount;
-		if (this.currentChakra < 0.0F) {
-			this.currentChakra = 0.0F;
+		if (this.currentChakra < 0) {
+			this.currentChakra = 0;
 		}
 	}
 
 	@Override
 	public void replenishChakra() {
-		while(this.currentChakra < this.maxChakra) {
-			currentChakra++;
+		if(this.currentChakra < this.maxChakra) {
+			this.currentChakra++;
 		}
 	}
 
 	@Override
-	public void fillChakra(float amount) {
+	public void fillChakra(int amount) {
 		this.currentChakra += amount;
 		if(this.currentChakra > this.maxChakra) {
 			this.currentChakra = this.maxChakra;
@@ -42,7 +42,7 @@ public class CapabilityChakra implements ICapChakra {
 	}
 	
 	@Override
-	public void setChakra(float amount) {
+	public void setChakra(int amount) {
 		this.currentChakra = amount;
 		if(this.currentChakra > this.maxChakra) {
 			this.currentChakra = this.maxChakra;
@@ -50,7 +50,7 @@ public class CapabilityChakra implements ICapChakra {
 	}
 
 	@Override
-	public float getChakra() {
+	public int getChakra() {
 		return this.currentChakra;
 	}
 	
@@ -72,19 +72,19 @@ public class CapabilityChakra implements ICapChakra {
 	@Override
 	public NBTTagCompound serializeNBT() {
 		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setFloat("currentChakra", this.currentChakra);
-		nbt.setFloat("maxChakra", this.maxChakra);
+		nbt.setInteger("currentChakra", this.currentChakra);
+		nbt.setInteger("maxChakra", this.maxChakra);
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(NBTTagCompound nbt) {
 		if(nbt.hasKey("currentChakra")) {
-			nbt.getFloat("currentChakra");
+			nbt.getInteger("currentChakra");
 		}
 		
 		if(nbt.hasKey("maxChakra")) {
-			nbt.getFloat("maxChakra");
+			nbt.getInteger("maxChakra");
 		}
 	}
 }

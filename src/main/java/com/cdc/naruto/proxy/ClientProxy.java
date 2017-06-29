@@ -1,7 +1,8 @@
 package com.cdc.naruto.proxy;
 
+import com.cdc.naruto.handlers.EntityHandler;
 import com.cdc.naruto.util.RenderingUtil;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
+
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -11,6 +12,7 @@ public class ClientProxy extends CommonProxy{
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
         RenderingUtil.regModels();
+        EntityHandler.initRenderers();
     }
 
     @Override

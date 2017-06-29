@@ -68,14 +68,16 @@ public class JutsuHelper {
                 if(player.hasCapability(NarutoCapabilities.CHAKRA, null)) {
                     ICapChakra icap = player.getCapability(NarutoCapabilities.CHAKRA, null);
                     if(icap != null) {
-                        if (icap.getChakra() < j.getChakra()) {
+                        if (icap.getChakra() < j.getChakra() || icap.getChakra() - j.getChakra() < 0) {
                             player.sendStatusMessage(new TextComponentString("You do not have enough chakra to perform this jutsu."), false);
                             return stack;
                         }else {
                             stack = j.activeUse(stack, world, player, hand);
                             multiplier += j.getChakra();
                             player.sendStatusMessage(new TextComponentString("This takes " + j.getChakra() + " chakra."), false);
-                            icap.diminishChakra(multiplier);
+                            if(!player.capabilities.isCreativeMode) {
+                            	icap.diminishChakra(multiplier);
+                            }
                         }
                     }
                 }
