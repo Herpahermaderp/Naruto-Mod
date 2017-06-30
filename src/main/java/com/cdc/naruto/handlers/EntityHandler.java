@@ -2,7 +2,7 @@ package com.cdc.naruto.handlers;
 
 import com.cdc.naruto.Naruto;
 import com.cdc.naruto.client.render.EntitySubLogRender;
-import com.cdc.naruto.entity.EntitySubLog;
+import com.cdc.naruto.entity.jutsu.EntitySubLog;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;

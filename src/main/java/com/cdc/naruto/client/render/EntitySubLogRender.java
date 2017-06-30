@@ -2,18 +2,19 @@ package com.cdc.naruto.client.render;
 
 import javax.annotation.Nullable;
 
-import com.cdc.naruto.entity.EntitySubLog;
+import com.cdc.naruto.client.model.ModelSubLog;
+import com.cdc.naruto.entity.jutsu.EntitySubLog;
 
-import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class EntitySubLogRender extends Render<EntitySubLog> {
+public class EntitySubLogRender extends RenderLiving<EntitySubLog> {
 	public static final Factory FACTORY = new Factory();
 	
 	protected EntitySubLogRender(RenderManager manager) {
-		super(manager);
+		super(manager, new ModelSubLog(), 1.0F);
 	}
 	
 	@Nullable
@@ -24,7 +25,7 @@ public class EntitySubLogRender extends Render<EntitySubLog> {
 	
 	public static class Factory implements IRenderFactory<EntitySubLog> {
 		@Override
-		public Render<? super EntitySubLog> createRenderFor(RenderManager manager) {
+		public RenderLiving<? super EntitySubLog> createRenderFor(RenderManager manager) {
 			return new EntitySubLogRender(manager);
 		}
 	}

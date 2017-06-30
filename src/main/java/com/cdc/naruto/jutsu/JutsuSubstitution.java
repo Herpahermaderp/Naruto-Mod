@@ -1,8 +1,8 @@
 package com.cdc.naruto.jutsu;
 
-import com.cdc.naruto.entity.EntitySubLog;
+import com.cdc.naruto.entity.jutsu.EntitySubLog;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -32,23 +32,23 @@ public class JutsuSubstitution extends JutsuEntry {
 		RayTraceResult playerRTR = player.rayTrace(200, 10);
 		BlockPos block = playerRTR.getBlockPos();
 		world.spawnParticle(EnumParticleTypes.CLOUD, player.posX, player.posY, player.posZ, 0.1D, 0.5D, 0.1D);
-		EntityLiving log = new EntitySubLog(world);
-		log.setPosition(player.posX, player.posY + 0.5D, player.posZ);
+		Entity log = new EntitySubLog(world);
+		log.setPosition(player.posX, player.getEyeHeight(), player.posZ);
 		world.spawnEntity(log);
 		if(playerRTR.sideHit == EnumFacing.UP) {
-			player.setPositionAndUpdate(block.getX(), block.getY() + 0.5D, block.getZ());
+			player.setPositionAndUpdate(block.getX(), block.getY() + 1.0D, block.getZ());
 		}
 		else if(playerRTR.sideHit == EnumFacing.DOWN) {
-			player.setPositionAndUpdate(block.getX(), block.getY() - 0.5D, block.getZ());
+			player.setPositionAndUpdate(block.getX(), block.getY() - 1.0D, block.getZ());
 		}
 		else if(playerRTR.sideHit == EnumFacing.NORTH) {
-			player.setPositionAndUpdate(block.getX(), block.getY(), block.getZ() - 0.5D);
+			player.setPositionAndUpdate(block.getX(), block.getY(), block.getZ() - 1.0D);
 		}
 		else if(playerRTR.sideHit == EnumFacing.SOUTH) {
-			player.setPositionAndUpdate(block.getX(), block.getY(), block.getZ() + 0.5D);
+			player.setPositionAndUpdate(block.getX(), block.getY(), block.getZ() + 1.0D);
 		}
 		else if(playerRTR.sideHit == EnumFacing.EAST) {
-			player.setPositionAndUpdate(block.getX() + 0.5D, block.getY(), block.getZ());
+			player.setPositionAndUpdate(block.getX() + 1.0D, block.getY(), block.getZ());
 		}
 		else if(playerRTR.sideHit == EnumFacing.WEST) {
 			player.setPositionAndUpdate(block.getX() - 0.5D, block.getY(), block.getZ());

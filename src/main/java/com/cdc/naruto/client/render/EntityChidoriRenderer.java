@@ -1,12 +1,13 @@
 package com.cdc.naruto.client.render;
 
-import com.cdc.naruto.entity.EntityChidori;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
+
+import com.cdc.naruto.entity.jutsu.EntityChidori;
 
 public class EntityChidoriRenderer extends Render<EntityChidori> {
 

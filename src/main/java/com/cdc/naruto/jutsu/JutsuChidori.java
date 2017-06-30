@@ -1,6 +1,5 @@
 package com.cdc.naruto.jutsu;
 
-import com.cdc.naruto.entity.EntityChidori;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,6 +9,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.lwjgl.input.Mouse;
+
+import com.cdc.naruto.entity.jutsu.EntityChidori;
 
 public class JutsuChidori extends JutsuEntry{
     public JutsuChidori() {

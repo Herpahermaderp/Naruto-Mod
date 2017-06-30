@@ -24,12 +24,14 @@ public class JutsuMudWall extends JutsuEntry{
 
     @Override
     public ItemStack activeUse(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        if(world.isRemote) return super.activeUse(stack, world, player, hand);
+        if(world.isRemote) { 
+        	return super.activeUse(stack, world, player, hand);
+        }
 
         RayTraceResult result = Minecraft.getMinecraft().objectMouseOver;
         BlockPos pos = result.getBlockPos();
 
-        if(world.getBlockState(pos).getMaterial() == Material.GRASS || world.getBlockState(pos).getMaterial() == Material.GROUND || world.getBlockState(pos).getMaterial() == Material.ROCK){
+        if(world.getBlockState(pos).getMaterial() == Material.GRASS || world.getBlockState(pos).getMaterial() == Material.GROUND || world.getBlockState(pos).getMaterial() == Material.ROCK) {
             for(int i = 0; i < 10; i++){
                 for(int j = 0; j < 10; j++){
                     for(int k = 0; k < 3; k++){

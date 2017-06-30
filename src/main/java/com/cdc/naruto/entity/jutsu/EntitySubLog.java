@@ -1,4 +1,4 @@
-package com.cdc.naruto.entity;
+package com.cdc.naruto.entity.jutsu;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
