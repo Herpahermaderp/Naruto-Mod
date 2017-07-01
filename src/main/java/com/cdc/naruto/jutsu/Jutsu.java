@@ -20,100 +20,100 @@ public class Jutsu {
     private JutsuEntry entry;
     private NBTTagCompound jutsuNBT;
 
-    private Jutsu(){
+    private Jutsu() {
         jutsuNBT = new NBTTagCompound();
         jutsuNBT.setInteger(KEY_CHAKRA, 0);
     }
 
-    public Jutsu(String name, int chakra){
+    public Jutsu(String name, int chakra) {
         this(NarutoJutsus.getJutsu(name), chakra);
     }
 
-    public Jutsu(String name){
+    public Jutsu(String name) {
         this(NarutoJutsus.getJutsu(name));
     }
 
-    public Jutsu(JutsuEntry entry){
+    public Jutsu(JutsuEntry entry) {
         this(entry, entry.getChakraCost());
     }
 
-    public Jutsu(JutsuEntry jutsu, int chakra){
+    public Jutsu(JutsuEntry jutsu, int chakra) {
         this();
         this.entry = jutsu;
         jutsuNBT.setInteger(KEY_CHAKRA, chakra);
     }
 
-    public Jutsu(NBTTagCompound compound){
+    public Jutsu(NBTTagCompound compound) {
         this();
         if(compound.hasKey(KEY_NAME, Constants.NBT.TAG_STRING)) this.entry = NarutoJutsus.getJutsu(compound.getString(KEY_NAME));
         if(compound.hasKey(KEY_COMPOUND_TAG, Constants.NBT.TAG_COMPOUND)) setTagCompound(compound.getCompoundTag(KEY_COMPOUND_TAG));
     }
 
     @Nullable
-    public JutsuEntry getEntry(){
+    public JutsuEntry getEntry() {
         return entry;
     }
 
-    public NBTTagCompound getTagCompound(){
+    public NBTTagCompound getTagCompound() {
         return jutsuNBT;
     }
 
-    public boolean hasTagCompound(){
+    public boolean hasTagCompound() {
         return !jutsuNBT.hasNoTags();
     }
 
-    public NBTTagCompound writeToNBT(){
+    public NBTTagCompound writeToNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
-        if(entry != null){
+        if(entry != null) {
             nbt.setString(KEY_NAME, this.entry.getRawName());
             nbt.setTag(KEY_COMPOUND_TAG, this.getTagCompound());
         }
         return nbt;
     }
 
-    public void setTagCompound(NBTTagCompound nbt){
+    public void setTagCompound(NBTTagCompound nbt) {
         jutsuNBT = nbt;
     }
 
     @Nullable
-    public String getDescription(){
+    public String getDescription() {
         if(entry != null) return entry.getDescription();
         return null;
     }
 
-    public int getChakra(){
+    public int getChakra() {
         return jutsuNBT.getInteger(KEY_CHAKRA);
     }
 
-    public void setChakra(int chakra){
+    public void setChakra(int chakra) {
         if(!hasTagCompound())
             jutsuNBT = new NBTTagCompound();
 
         jutsuNBT.setInteger(KEY_CHAKRA, chakra);
     }
 
-    public static boolean isJutsuEqualTo(ItemStack stack1, ItemStack stack2){
-        if((stack1.getItem() instanceof ItemScroll) && (stack2.getItem() instanceof ItemScroll)){
-            if(stack1.hasTagCompound() && stack2.hasTagCompound()){
+    public static boolean isJutsuEqualTo(ItemStack stack1, ItemStack stack2) {
+        if((stack1.getItem() instanceof ItemScroll) && (stack2.getItem() instanceof ItemScroll)) {
+            if(stack1.hasTagCompound() && stack2.hasTagCompound()) {
                 return stack1.getTagCompound().getCompoundTag(KEY_NAME) == stack2.getTagCompound().getCompoundTag(KEY_NAME);
             }
         }
         return false;
     }
 
-    public boolean hasCustomDisplayName(){
+    public boolean hasCustomDisplayName() {
         return !getDisplayName().equals("");
     }
 
-    public String getLocalisedName(){
+    public String getLocalisedName() {
         return this.entry.getLocalisedName();
     }
 
-    public String getDisplayName(){
+    public String getDisplayName() {
         return jutsuNBT.getString(KEY_DISPLAY_NAME);
     }
 
-    public void setDisplayName(String name){
+    public void setDisplayName(String name) {
         jutsuNBT.setString(KEY_DISPLAY_NAME, name);
     }
 

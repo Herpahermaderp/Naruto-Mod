@@ -19,7 +19,9 @@ public class JutsuFireball extends JutsuEntry {
 
     @Override
     public ItemStack activeUse(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        if(world.isRemote) return super.activeUse(stack, world, player, hand);
+        if(world.isRemote) {
+        	return super.activeUse(stack, world, player, hand);
+        }
         double ax, ay, az;
         ax = player.getLook(1.0F).xCoord / 0.1D;
         ay = player.getLook(1.0F).yCoord / 0.1D;

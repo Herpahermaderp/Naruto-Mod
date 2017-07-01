@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.cdc.naruto.jutsu.JutsuEntry;
 import com.cdc.naruto.jutsu.JutsuFireball;
+import com.cdc.naruto.jutsu.JutsuKirin;
 import com.cdc.naruto.jutsu.JutsuMudWall;
 import com.cdc.naruto.jutsu.JutsuSubstitution;
 
@@ -15,6 +16,7 @@ public class NarutoJutsus {
         addJutsu(new JutsuFireball());
         addJutsu(new JutsuMudWall());
         addJutsu(new JutsuSubstitution());
+        addJutsu(new JutsuKirin());
     }
 
     private static void addJutsu(JutsuEntry jutsu){

@@ -16,34 +16,34 @@ import javax.annotation.Nonnull;
 public abstract class JutsuEntry {
     private String unlocalizedName;
 
-    public JutsuEntry(String name){
+    public JutsuEntry(String name) {
         unlocalizedName = name;
     }
 
     @Nonnull
     @SideOnly(Side.CLIENT)
-    public String getDescription(){
+    public String getDescription() {
         return I18n.format("desc."+getUnlocalizedName());
     }
 
     @Nonnull
-    public String getUnlocalizedName(){
+    public String getUnlocalizedName() {
         return "jutsu." + unlocalizedName + ".name";
     }
 
-    public String getRawName(){
+    public String getRawName() {
         return unlocalizedName;
     }
 
     @SideOnly(Side.CLIENT)
-    public String getLocalisedName(){
+    public String getLocalisedName() {
         return I18n.format(getUnlocalizedName());
     }
 
     @Nonnegative
     public abstract int getChakraCost();
 
-    public ItemStack activeUse(ItemStack stack, World world, EntityPlayer player, EnumHand hand){
+    public ItemStack activeUse(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         return stack;
     }
 

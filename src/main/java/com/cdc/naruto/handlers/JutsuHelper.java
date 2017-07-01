@@ -1,15 +1,15 @@
 package com.cdc.naruto.handlers;
 
-import com.cdc.naruto.capabilities.ICapability;
-import com.cdc.naruto.capabilities.chakra.CapabilityChakra;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import com.cdc.naruto.capabilities.chakra.ICapChakra;
 import com.cdc.naruto.init.NarutoCapabilities;
-import com.cdc.naruto.init.NarutoJutsus;
 import com.cdc.naruto.items.ItemScroll;
 import com.cdc.naruto.jutsu.Jutsu;
-import com.cdc.naruto.jutsu.JutsuEntry;
 import com.google.common.collect.Lists;
-import net.minecraft.entity.EntityLivingBase;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,12 +18,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class JutsuHelper {
     private static final String KEY_JUTSUS = "jutsus";
@@ -59,19 +54,21 @@ public class JutsuHelper {
         return stack;
     }
 
-    public static ItemStack perform(ItemStack stack, World world, EntityPlayer player, EnumHand hand){
+    public static ItemStack perform(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         if(world.isRemote) return stack;
         List<Jutsu> jutsus = getJutsu(stack);
-        if(!jutsus.isEmpty()){
+        if(!jutsus.isEmpty()) {
             int multiplier = 0;
-            for(Jutsu j : jutsus){
+            for(Jutsu j : jutsus) {
                 if(player.hasCapability(NarutoCapabilities.CHAKRA, null)) {
                     ICapChakra icap = player.getCapability(NarutoCapabilities.CHAKRA, null);
                     if(icap != null) {
                         if (icap.getChakra() < j.getChakra() || icap.getChakra() - j.getChakra() < 0) {
                             player.sendStatusMessage(new TextComponentString("You do not have enough chakra to perform this jutsu."), false);
                             return stack;
-                        }else {
+                        }
+                        
+                        else {
                             stack = j.activeUse(stack, world, player, hand);
                             multiplier += j.getChakra();
                             player.sendStatusMessage(new TextComponentString("This takes " + j.getChakra() + " chakra."), false);
